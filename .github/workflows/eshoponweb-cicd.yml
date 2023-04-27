@@ -9,7 +9,7 @@ env:
   LOCATION: eastus
   TEMPLATE-FILE: .azure/bicep/webapp.bicep
   SUBSCRIPTION-ID: 5a7f2dcf-3d2d-4020-9c6f-b74291319665
-  WEBAPP-NAME: az400-webapp-web
+  WEBAPP-NAME: az400-webapp-resourceweb
 
 
 jobs:
@@ -23,7 +23,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.x'
+        dotnet-version: '7.0.x'
         include-prerelease: true
     #Build/Test/Publish the .net project
     - name: Build with dotnet
@@ -78,8 +78,8 @@ jobs:
     - name: deploy
       uses: azure/arm-deploy@v1
       with:
-        subscriptionId: ${{ env.SUBSCRIPTION-ID }}
-        resourceGroupName: ${{ env.RESOURCE-GROUP }}
+        subscriptionId: ${{ 5a7f2dcf-3d2d-4020-9c6f-b74291319665 }}
+        resourceGroupName: ${{ g-az400-eshoponweb-resource}}
         template: bicep-template/webapp.bicep
         parameters: 'webAppName=${{ env.WEBAPP-NAME }} location=${{ env.LOCATION }}'
         failOnStdErr: false   
